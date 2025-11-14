@@ -1,43 +1,213 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
-    <title>Hello World</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(45deg, #f9a825, #ff7537);
-            background-size: cover;
-            background-position: center;
-        }
-        .container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            color: #fff;
-        }
-        h1 {
-            font-size: 48px;
-            text-align: center;
-            margin-top: 0;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-        p {
-            font-size: 24px;
-            text-align: center;
-            margin-top: 20px;
-            text-shadow: 2px 1px 2px rgba(0, 0, 0, 0.5);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>s_m.html</title>
+  <link rel="stylesheet" href="css/bootstrap-grid.css">
+  <link rel="stylesheet" href="css/stile.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Hello, World!</h1>
-        <p>Welcome to my website!</p>
+    <div class="container-fluid img-sfondo">
+        <div class="slideshow-bg">
+            <div class="slide active" style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(imgs/fossombrone.jpg);"></div>
+            <div class="slide" style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(imgs/sanmarino.jpg);"></div>
+            <div class="slide" style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(imgs/novafeltria.jpg);"></div>
+        </div>
+        <div class="header">
+            <div class="container-fluid">      
+                <div class="row pt-4 pb-5 mb-5 align-items-center">
+                    <div class="col-1 nav-wrapper d-block d-md-none">
+                        <a href="#"><img class="btn-menu" src="imgs/menu.png" alt="menu"></a>
+                    </div>
+                    <div class="offset-3 col-6 offset-md-0 col-md-2">
+                        <a href="#"><img class="logo" src="imgs/logo_s_m.svg" alt="logo"></a>
+                    </div>
+                    <div class="col-md-8 nav-wrapper d-none d-md-block">
+                        <ul class="nav-list">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link selected">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">Portfolio</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">Contatti</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mobile-nav-wrapper d-md-none">
+        <a href="#"><img class="btn-close" src="imgs/cross-mark.png" alt="close"></a>
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="#" class="nav-link selected">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Portfolio</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Contatti</a>
+                </li>
+            </ul>
+        </div>
+        <div class="container content-wrapper"> 
+            <div class="row prima-row mb-5 mt-5 mt-md-0">
+                <div class="offset-md-7 col-md-5 mb-3 mt-5 mt-md-0">
+                    <p class="color-white pt-3 font-2">Web designer</p>
+                    <h1 class="font-4 color-white pt-3 pb-4">samuele<br>_marini <br>.html</h1>
+                    <a class="color-white link font-2 " href="#">> Scopri di più</a>
+                </div>
+            </div>
+        </div>
+        <!-- Indicatori slideshow -->
+        <div class="slideshow-indicators">
+            <span class="indicator active" data-slide="0"></span>
+            <span class="indicator" data-slide="1"></span>
+            <span class="indicator" data-slide="2"></span>
+        </div>
     </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="offset-md-2 col-md-8 text-center my-3">
+                <p class="pt-3 font-2">Origini</p>
+                <h1 class="font-1 pt-4">Da Fossombrone a San Marino<br>passando per Novafeltria</h1>
+                <p class="pt-3 font-2">Un viaggio di esperienze e formazione professionale ambientato nella valle del Metauro, fino alla repubblica di San Marino, passando per Parigi e la val Marecchia</p>
+                <a class="link-2 font-2 my-3 d-inline-block" href="#">> Territorio</a>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="order-2 order-md-1 offset-md-1 col-md-4">
+                <h2 class="font-3 pt-4">Da perito a cameriere</h1>
+                <p class="pt-3 font-2 mb-3">Mi chiamo Samuele Marini e vengo da Fossombrone, nelle Marche. Dopo il diploma di perito meccanico all’Istituto “E. Mattei” di Urbino nel 2018, ho lavorato a Parigi come cameriere. Pochi mesi più tardi sono tornato in Italia pronto ad accogliere le nuove opportunità professionali che mi attendevano.</p>
+            </div>
+            <div class="order-1 order-md-2 offset-md-1 col-md-6 text-center">
+                <img class="img-m-s" src="imgs/marini_samuele.png" alt="Marini Samuele">                
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid background-black">
+    <div class="row align-items-center py-5">
+        <div class="col-12 col-md-6 px-4">
+            <video class="video-yacht" autoplay loop muted playsinline>
+                <source src="imgs/Electric Sliding Door For Yachts Beach Club.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="col-12 col-md-5 offset-md-1 px-4 px-md-3">
+            <h2 class="font-3 pt-4 color-white">Disegnatore tecnico</h2>
+            <p class="pt-3 font-2 color-white">Tornato a Fossombrone, ho trovato impiego come operaio in un'azienda produttrice di mobili, poi come disegnatore meccanico di macchinari enologici.<br>Poco dopo ho intrapreso un lungo percorso di formazione professionale, della durata di cinque anni, presso una fabbrica di porte per yacht, dove ho lavorato come progettista e disegnatore di porte stagne in alluminio, acciaio inox e vetro.</p>
+            <a class="link-3 font-2 my-3 d-inline-block" href="#">> Sliding doors</a>
+        </div>
+    </div>
+</div>
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="offset-md-1 col-md-4">
+                <p class="pt-3 font-2">Volontariato</p>
+                <h1 class="font-1 pt-4">Ass. culturale<br>Bottega ODV</h1>
+                <p class="pt-3 font-2">Nel frattempo, nel 2020, assieme ad un amico, abbiamo fondato un associazione culturale a Fossombrone che si occupa di offrire un luogo di ritrovo per i ragazzi e organizza eventi musicali per la città.</p>
+                <a class="link-2 font-2 my-3 d-inline-block" href="#">> Instagram</a>
+            </div>
+            <div class="offset-md-1 col-md-6 text-center">
+                <img class="img-m-s p-4" src="imgs/logo bottega quadrato bianco.png" alt="Marini Samuele">                
+            </div>
+        </div>
+    </div>
+<!-- qui si inserisce il codice JavaScript -->
+<script>
+// Seleziono gli elementi del DOM
+const btnMenu = document.querySelector('.btn-menu');
+const btnClose = document.querySelector('.btn-close');
+const mobileNavWrapper = document.querySelector('.mobile-nav-wrapper');
+const navLinks = document.querySelectorAll('.mobile-nav-wrapper .nav-link');
+
+// Apro il menu quando clicco sul bottone menu
+btnMenu.addEventListener('click', function() {
+    mobileNavWrapper.classList.add('show');
+});
+
+// Chiudo il menu quando clicco sul bottone close
+btnClose.addEventListener('click', function() {
+    mobileNavWrapper.classList.remove('show');
+});
+
+// Chiudo il menu quando clicco sul wrapper, ma NON sui link
+mobileNavWrapper.addEventListener('click', function(e) {
+    // Verifico se il click è sul wrapper stesso e non su un link
+    if (e.target === mobileNavWrapper) {
+        mobileNavWrapper.classList.remove('show');
+    }
+});
+// Slideshow carosello
+let currentSlide = 0;
+const slideshowBg = document.querySelector('.slideshow-bg');
+const slides = document.querySelectorAll('.slide');
+const indicators = document.querySelectorAll('.indicator');
+const slideInterval = 3000; // 3 secondi
+let autoSlide;
+
+// Funzione per cambiare slide con effetto carosello
+function goToSlide(n) {
+    // Rimuovi classe active da indicatore corrente
+    indicators[currentSlide].classList.remove('active');
+    
+    // Aggiorna indice
+    currentSlide = n;
+    
+    // Sposta il carosello
+    const offset = -currentSlide * 100;
+    slideshowBg.style.transform = `translateX(${offset}%)`;
+    
+    // Aggiungi classe active al nuovo indicatore
+    indicators[currentSlide].classList.add('active');
+}
+
+// Funzione per slide successiva
+function nextSlide() {
+    let next = (currentSlide + 1) % slides.length;
+    goToSlide(next);
+}
+
+// Avvia slideshow automatico
+function startAutoSlide() {
+    autoSlide = setInterval(nextSlide, slideInterval);
+}
+
+// Ferma slideshow automatico
+function stopAutoSlide() {
+    clearInterval(autoSlide);
+}
+
+// Click sugli indicatori
+indicators.forEach((indicator, index) => {
+    indicator.addEventListener('click', () => {
+        stopAutoSlide();
+        goToSlide(index);
+        startAutoSlide(); // Riavvia dopo il click
+    });
+});
+
+// Avvia lo slideshow al caricamento
+startAutoSlide();
+
+// Pausa slideshow quando l'utente cambia tab
+document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+        stopAutoSlide();
+    } else {
+        startAutoSlide();
+    }
+});
+</script>
 </body>
 </html>

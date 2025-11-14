@@ -1,0 +1,289 @@
+/* stile pagina */
+html, body{
+     font: normal 20px/24px Roboto, Helvetica, sans-serif;
+     margin: 0;
+     padding: 0;
+}
+
+.logo{
+    width: 150px;
+}
+.btn-menu{
+    width: 30px;
+}
+.mobile-nav-wrapper .btn-close {
+    position: absolute;
+    top: 5rem; /* Allinea con il padding-top del btn-menu (pt-4 = 1.5rem) */
+    left: 0.75rem; /* Allinea con la colonna col-1 */
+    width: 30px;
+    height: 30px;
+    background: transparent url(../imgs/cross-mark.png) no-repeat center center;
+    background-size: cover;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+ /* Lista di navigazione */
+.nav-list {
+    list-style: none;
+    padding-left: 0;
+
+    display: flex;
+    justify-content: center;
+    /* justify-content: flex-start; */
+    align-items: center;
+}
+
+/* Items della navigazione */
+.nav-item {
+    margin: 0;
+    padding: 0;
+}
+
+/* Links */
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    margin: 8px;
+    padding: 8px;
+    white-space: nowrap;
+    transition: color 0.3s ease;
+}
+.nav-link.selected {
+   background-color: rgb(0, 0, 0);
+}
+.nav-link:hover {
+    background-color: white;
+    color: black;
+}
+/* stile per i testi*/
+.color-white{
+    color: white;    
+}
+.font-1{
+    font-size: 60px;
+    line-height: 65px;
+}
+.font-4{
+    font-size: 60px;
+    line-height: 65px;
+}
+/* Slideshow container */
+.img-sfondo {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    overflow: hidden;
+}
+
+.slideshow-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    display: flex;
+    transition: transform 1s ease-in-out;
+}
+
+.slide {
+    position: relative;
+    flex-shrink: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+/* Indicatori */
+.slideshow-indicators {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 10;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.indicator:hover {
+    background-color: rgba(255, 255, 255, 0.6);
+    transform: scale(1.1);
+}
+
+.indicator.active {
+    background-color: white;
+}
+
+/* Assicurati che header e content siano sopra lo slideshow */
+.header,
+.content-wrapper,
+.mobile-nav-wrapper {
+    position: relative;
+    z-index: 2;
+}
+.img-m-s {
+    max-width: 100%;
+    height: 70vh;
+    object-fit: cover; /* Mantiene le proporzioni senza deformare */
+    object-position: center; /* Centra l'immagine nel contenitore */
+}
+.header{
+    background: linear-gradient(to bottom, #000, #0000);
+    position: relative;
+    z-index: 2;
+}
+.content-wrapper{
+    width: 100%;
+    height: 500px;
+}
+.link{
+    color: white;
+    text-decoration: none;
+    padding: 8px;
+    white-space: nowrap;
+    transition: color 0.3s ease;
+}
+.link:hover{
+    background-color: white;
+    color: black;
+}
+.link-2{
+    color: #06f;
+    text-decoration: none;
+    padding: 8px;
+    white-space: nowrap;
+    transition: color 0.3s ease;
+    margin: 20px 0 !important;
+}
+.link-2:hover{
+    background-color: black;
+    color: white;
+}
+.link-3{
+    color: #06f;
+    text-decoration: none;
+    padding: 8px;
+    white-space: nowrap;
+    transition: color 0.3s ease;
+    margin: 20px 0 !important;
+}
+.link-3:hover{
+    background-color: white;
+    color: black;
+}
+/* navigazione mobile */
+.mobile-nav-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(60, 60, 60);
+    z-index: 1000;
+    display: flex;
+    padding-top: 33%;
+    justify-content: center;
+    align-items: flex-start;
+    
+    /* Effetto Liquid Reveal */
+    clip-path: circle(0% at 45px 45px);
+    transition: clip-path 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.mobile-nav-wrapper.show {
+    clip-path: circle(150% at 45px 45px);
+}
+
+/* Posizionamento btn-close */
+.mobile-nav-wrapper .btn-close {
+    position: absolute;
+    top: 2rem;
+    left: 0.75rem;
+    width: 30px;
+    height: 30px;
+    background: transparent url(../imgs/cross-mark.png) no-repeat center center;
+    background-size: cover;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.mobile-nav-wrapper .nav-list {
+    flex-direction: column;
+    padding-top: 50px;
+    /* Animazione per gli elementi del menu */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.mobile-nav-wrapper.show .nav-list {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.4s ease 0.2s, transform 0.4s ease 0.2s;
+}
+
+.mobile-nav-wrapper .nav-item {
+    margin: 15px 0;
+    width: 100%;
+}
+
+.mobile-nav-wrapper .nav-link {
+    font-size: 40px;
+    padding: 8px;
+}
+
+.mobile-nav-wrapper .nav-link.selected {
+    color: white;
+    border-bottom: none;
+    cursor: default;
+}
+
+.mobile-nav-wrapper .nav-link:hover {
+    background-color: white;
+    color: black;
+}
+.background-black {
+    background-color: black;
+}
+
+.video-yacht {
+    width: 100%;
+    height: auto; /* Cambiato da 70vh */
+    max-height: 70vh; /* Altezza massima su schermi grandi */
+    object-fit: contain; /* Cambiato da cover */
+    object-position: center;
+    display: block;
+    background-color: black; /* Per riempire eventuali spazi vuoti */
+}
+@media (max-width: 767px) {
+    .font-1 {
+        font-size: 26px;
+        line-height: 30px;
+    }
+}
+@media (max-width: 767px) {
+    .font-2 {
+        font-size: 18px;
+        line-height: 24px;
+    }
+}
+@media (max-width: 767px) {
+    .font-3 {
+        font-size: 26px;
+        line-height: 30px;
+    }
+}
