@@ -269,6 +269,10 @@ html, body{
     display: block;
     background-color: black; /* Per riempire eventuali spazi vuoti */
 }
+.no-padding {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
 @media (max-width: 767px) {
     .font-1 {
         font-size: 26px;
