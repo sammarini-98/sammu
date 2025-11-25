@@ -265,6 +265,9 @@ html, body{
 .background-black {
     background-color: black;
 }
+.background-gary {
+    background-color: #696969;
+}
 
 .video-yacht {
     width: 100%;
