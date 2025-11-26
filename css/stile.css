@@ -141,7 +141,7 @@ html, body{
     object-position: center; /* Centra l'immagine nel contenitore */
 }
 .img-eventi{
-    max-width: 100%;
+    width: 100%;
     height: 300px;
     object-fit: cover; /* Mantiene le proporzioni senza deformare */
     object-position: center; /* Centra l'immagine nel contenitore */
@@ -271,6 +271,7 @@ html, body{
 
 .video-yacht {
     width: 100%;
+    border-radius: 20px;
     height: auto; /* Cambiato da 70vh */
     max-height: 70vh; /* Altezza massima su schermi grandi */
     object-fit: contain; /* Cambiato da cover */
@@ -278,7 +279,72 @@ html, body{
     display: block;
     background-color: black; /* Per riempire eventuali spazi vuoti */
 }
+/* Cerchio Instagram */
+.instagram-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 30%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
+.instagram-circle:hover {
+    transform: scale(1.1);
+}
+
+.instagram-icon {
+    width: 60px;
+    height: 60px;
+    display: block;
+}
+
+/* Footer */
+footer h4 {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.footer-links {
+    display: flex;
+    align-items: center;
+}
+
+/* Menu Footer */
+.footer-nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 20px;
+}
+
+.footer-nav-item {
+    margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+    .footer-nav-list {
+        justify-content: flex-start;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .instagram-circle {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .instagram-icon {
+        width: 50px;
+        height: 50px;
+    }
+}
 @media (max-width: 767px) {
     .font-1 {
         font-size: 26px;
