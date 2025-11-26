@@ -140,9 +140,15 @@ html, body{
     object-fit: cover; /* Mantiene le proporzioni senza deformare */
     object-position: center; /* Centra l'immagine nel contenitore */
 }
+.img-bottega {
+    max-width: 100%;
+    max-height: 70vh;
+    object-fit: cover; /* Mantiene le proporzioni senza deformare */
+    object-position: center; /* Centra l'immagine nel contenitore */
+}
 .img-eventi{
     width: 100%;
-    height: 300px;
+    max-height: 300px;
     object-fit: cover; /* Mantiene le proporzioni senza deformare */
     object-position: center; /* Centra l'immagine nel contenitore */
 }
@@ -266,7 +272,7 @@ html, body{
     background-color: black;
 }
 .background-gary {
-    background-color: #696969;
+    background-color: #326a95;
 }
 
 .video-yacht {
