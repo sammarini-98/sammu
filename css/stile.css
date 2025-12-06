@@ -1,20 +1,138 @@
-/* stile pagina */
-html, body{
-     font: normal 20px/24px Roboto, Helvetica, sans-serif;
-     margin: 0;
-     padding: 0;
+/* ========================================
+   RESET & BASE STYLES
+   ======================================== */
+html {
+    scroll-behavior: smooth;
 }
 
-.logo{
+html, body {
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 20px;
+    line-height: 24px;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* ========================================
+   TYPOGRAPHY
+   ======================================== */
+.color-white {
+    color: white;
+}
+
+.font-1 {
+    font-size: 60px;
+    line-height: 65px;
+    font-weight: 700;
+}
+
+.font-2 {
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 400;
+}
+
+.font-3 {
+    font-size: 36px;
+    line-height: 42px;
+    font-weight: 600;
+}
+
+.font-4 {
+    font-size: 60px;
+    line-height: 65px;
+    font-weight: 700;
+}
+
+/* ========================================
+   NAVIGATION - LOGO & MENU BUTTONS
+   ======================================== */
+.logo {
     width: 150px;
+    transition: transform 0.3s ease;
 }
-.btn-menu{
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.btn-menu {
     width: 30px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
 }
+
+.btn-menu:hover {
+    transform: rotate(90deg);
+}
+
+/* Navigation List */
+.nav-list {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.nav-item {
+    margin: 0;
+    padding: 0;
+}
+
+/* Navigation Links */
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 500;
+    margin: 8px;
+    padding: 8px;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.nav-link.selected {
+    background-color: rgb(0, 0, 0);
+}
+
+.nav-link:hover {
+    background-color: white;
+    color: black;
+    transform: translateY(-2px);
+}
+
+/* ========================================
+   MOBILE NAVIGATION
+   ======================================== */
+.mobile-nav-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgb(60, 60, 60) 0%, rgb(40, 40, 40) 100%);
+    z-index: 1000;
+    display: flex;
+    padding-top: 33%;
+    justify-content: center;
+    align-items: flex-start;
+    clip-path: circle(0% at 45px 45px);
+    transition: clip-path 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.mobile-nav-wrapper.show {
+    clip-path: circle(150% at 45px 45px);
+}
+
 .mobile-nav-wrapper .btn-close {
     position: absolute;
-    top: 5rem; /* Allinea con il padding-top del btn-menu (pt-4 = 1.5rem) */
-    left: 0.75rem; /* Allinea con la colonna col-1 */
+    top: 2rem;
+    left: 0.75rem;
     width: 30px;
     height: 30px;
     background: transparent url(../imgs/cross-mark.png) no-repeat center center;
@@ -22,54 +140,52 @@ html, body{
     border: none;
     padding: 0;
     cursor: pointer;
-}
- /* Lista di navigazione */
-.nav-list {
-    list-style: none;
-    padding-left: 0;
-
-    display: flex;
-    justify-content: center;
-    /* justify-content: flex-start; */
-    align-items: center;
+    transition: transform 0.3s ease;
 }
 
-/* Items della navigazione */
-.nav-item {
-    margin: 0;
-    padding: 0;
+.mobile-nav-wrapper .btn-close:hover {
+    transform: rotate(90deg) scale(1.1);
 }
 
-/* Links */
-.nav-link {
-    color: white;
-    text-decoration: none;
-    font-size: 20px;
-    margin: 8px;
+.mobile-nav-wrapper .nav-list {
+    flex-direction: column;
+    padding-top: 50px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.mobile-nav-wrapper.show .nav-list {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.4s ease 0.2s, transform 0.4s ease 0.2s;
+}
+
+.mobile-nav-wrapper .nav-item {
+    margin: 15px 0;
+    width: 100%;
+    text-align: center;
+}
+
+.mobile-nav-wrapper .nav-link {
+    font-size: 40px;
     padding: 8px;
-    white-space: nowrap;
-    transition: color 0.3s ease;
 }
-.nav-link.selected {
-   background-color: rgb(0, 0, 0);
+
+.mobile-nav-wrapper .nav-link.selected {
+    color: white;
+    border-bottom: none;
+    cursor: default;
 }
-.nav-link:hover {
+
+.mobile-nav-wrapper .nav-link:hover {
     background-color: white;
     color: black;
 }
-/* stile per i testi*/
-.color-white{
-    color: white;    
-}
-.font-1{
-    font-size: 60px;
-    line-height: 65px;
-}
-.font-4{
-    font-size: 60px;
-    line-height: 65px;
-}
-/* Slideshow container */
+
+/* ========================================
+   HERO SECTION - SLIDESHOW
+   ======================================== */
 .img-sfondo {
     position: relative;
     min-height: 100vh;
@@ -77,6 +193,7 @@ html, body{
     padding-left: 0;
     padding-right: 0;
     overflow: hidden;
+    padding-top: 200px;
 }
 
 .slideshow-bg {
@@ -98,7 +215,8 @@ html, body{
     background-size: cover;
     background-position: center;
 }
-/* Indicatori */
+
+/* Slideshow Indicators */
 .slideshow-indicators {
     position: absolute;
     bottom: 30px;
@@ -115,190 +233,188 @@ html, body{
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.4);
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 .indicator:hover {
     background-color: rgba(255, 255, 255, 0.6);
-    transform: scale(1.1);
+    transform: scale(1.3);
 }
 
 .indicator.active {
     background-color: white;
+    transform: scale(1.1);
 }
 
-/* Assicurati che header e content siano sopra lo slideshow */
-.header,
-.content-wrapper,
-.mobile-nav-wrapper {
+/* ========================================
+   HEADER & CONTENT POSITIONING
+   ======================================== */
+.header {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0));
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: background 0.3s ease;
+}
+
+.content-wrapper {
     position: relative;
     z-index: 2;
+    width: 100%;
+    height: 500px;
 }
+
+/* ========================================
+   IMAGES
+   ======================================== */
 .img-m-s {
     max-width: 100%;
     height: 70vh;
     object-fit: cover; /* Mantiene le proporzioni senza deformare */
     object-position: center; /* Centra l'immagine nel contenitore */
 }
-.img-bottega {
-    max-width: 100%;
+
+
+
+.img-paris {
+    width: 100%;
+    height: auto;
     max-height: 70vh;
-    object-fit: cover; /* Mantiene le proporzioni senza deformare */
-    object-position: center; /* Centra l'immagine nel contenitore */
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    background-color: black;
+    transition: transform 0.4s ease;
+    border-radius: 8px;
 }
-.img-eventi{
+
+.img-paris:hover {
+    transform: scale(1.02);
+}
+
+.img-bottega {
+    max-width: 65%;
+    max-height: 55vh;
+    object-fit: contain;
+    object-position: center;
+    margin: 0 auto;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.img-bottega:hover {
+    transform: rotate(-3deg) scale(1.05);
+}
+
+.img-eventi {
     width: 100%;
     max-height: 300px;
-    object-fit: cover; /* Mantiene le proporzioni senza deformare */
-    object-position: center; /* Centra l'immagine nel contenitore */
-}
-.header{
-    background: linear-gradient(to bottom, #000, #0000);
-    position: relative;
-    z-index: 2;
-}
-.content-wrapper{
-    width: 100%;
-    height: 500px;
-}
-.link{
-    color: white;
-    text-decoration: none;
-    padding: 8px;
-    white-space: nowrap;
-    transition: color 0.3s ease;
-}
-.link:hover{
-    background-color: white;
-    color: black;
-}
-.link-2{
-    color: #06f;
-    text-decoration: none;
-    padding: 8px;
-    white-space: nowrap;
-    transition: color 0.3s ease;
-    margin: 20px 0 !important;
-}
-.link-2:hover{
-    background-color: black;
-    color: white;
-}
-.link-3{
-    color: #06f;
-    text-decoration: none;
-    padding: 8px;
-    white-space: nowrap;
-    transition: color 0.3s ease;
-    margin: 20px 0 !important;
-}
-.link-3:hover{
-    background-color: white;
-    color: black;
-}
-/* navigazione mobile */
-.mobile-nav-wrapper {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgb(60, 60, 60);
-    z-index: 1000;
-    display: flex;
-    padding-top: 33%;
-    justify-content: center;
-    align-items: flex-start;
-    
-    /* Effetto Liquid Reveal */
-    clip-path: circle(0% at 45px 45px);
-    transition: clip-path 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    object-fit: cover;
+    object-position: center;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.mobile-nav-wrapper.show {
-    clip-path: circle(150% at 45px 45px);
-}
-
-/* Posizionamento btn-close */
-.mobile-nav-wrapper .btn-close {
-    position: absolute;
-    top: 2rem;
-    left: 0.75rem;
-    width: 30px;
-    height: 30px;
-    background: transparent url(../imgs/cross-mark.png) no-repeat center center;
-    background-size: cover;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-}
-
-.mobile-nav-wrapper .nav-list {
-    flex-direction: column;
-    padding-top: 50px;
-    /* Animazione per gli elementi del menu */
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.mobile-nav-wrapper.show .nav-list {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.4s ease 0.2s, transform 0.4s ease 0.2s;
-}
-
-.mobile-nav-wrapper .nav-item {
-    margin: 15px 0;
-    width: 100%;
-}
-
-.mobile-nav-wrapper .nav-link {
-    font-size: 40px;
-    padding: 8px;
-}
-
-.mobile-nav-wrapper .nav-link.selected {
-    color: white;
-    border-bottom: none;
-    cursor: default;
-}
-
-.mobile-nav-wrapper .nav-link:hover {
-    background-color: white;
-    color: black;
-}
-.background-black {
-    background-color: black;
-}
-.background-gary {
-    background-color: #326a95;
+.img-eventi:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
 .video-yacht {
     width: 100%;
-    border-radius: 20px;
-    height: auto; /* Cambiato da 70vh */
-    max-height: 70vh; /* Altezza massima su schermi grandi */
-    object-fit: contain; /* Cambiato da cover */
+    height: auto;
+    max-height: 70vh;
+    object-fit: contain;
     object-position: center;
     display: block;
-    background-color: black; /* Per riempire eventuali spazi vuoti */
+    background-color: black;
+    border-radius: 8px;
 }
-/* Cerchio Instagram */
+
+/* ========================================
+   LINKS & BUTTONS
+   ======================================== */
+.link {
+    color: white;
+    text-decoration: none;
+    padding: 8px;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    display: inline-block;
+    border-radius: 4px;
+}
+
+.link:hover {
+    background-color: white;
+    color: black;
+    transform: translateX(5px);
+}
+
+.link-2 {
+    color: #06f;
+    text-decoration: none;
+    padding: 8px;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    margin: 20px 0 !important;
+    display: inline-block;
+    border-radius: 4px;
+}
+
+.link-2:hover {
+    background-color: black;
+    color: white;
+    transform: translateX(8px);
+}
+
+.link-3 {
+    color: #06f;
+    text-decoration: none;
+    padding: 8px;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    margin: 20px 0 !important;
+    display: inline-block;
+    border-radius: 4px;
+}
+
+.link-3:hover {
+    background-color: white;
+    color: black;
+    transform: translateX(8px);
+}
+
+/* ========================================
+   BACKGROUNDS
+   ======================================== */
+.background-black {
+    background-color: black;
+}
+
+.background-gary {
+    background-color: #326a95;
+}
+
+/* ========================================
+   INSTAGRAM SECTION
+   ======================================== */
 .instagram-circle {
     width: 80px;
     height: 80px;
-    border-radius: 30%;
+    border-radius: 50%;
     margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    background: transparent;
+    padding: 3px;
 }
 
 .instagram-circle:hover {
-    transform: scale(1.1);
+    transform: scale(1.15) rotate(10deg);
 }
 
 .instagram-icon {
@@ -307,7 +423,9 @@ html, body{
     display: block;
 }
 
-/* Footer */
+/* ========================================
+   FOOTER
+   ======================================== */
 footer h4 {
     font-size: 24px;
     font-weight: 500;
@@ -318,7 +436,6 @@ footer h4 {
     align-items: center;
 }
 
-/* Menu Footer */
 .footer-nav-list {
     list-style: none;
     padding: 0;
@@ -333,7 +450,56 @@ footer h4 {
     margin: 0;
 }
 
-/* Responsive */
+/* ========================================
+   SCROLL ANIMATIONS
+   ======================================== */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide-in-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.slide-in-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.slide-in-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.slide-in-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.scale-in {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.scale-in.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
 @media (max-width: 767px) {
     .footer-nav-list {
         justify-content: flex-start;
@@ -350,22 +516,23 @@ footer h4 {
         width: 50px;
         height: 50px;
     }
-}
-@media (max-width: 767px) {
+    
     .font-1 {
         font-size: 26px;
         line-height: 30px;
     }
-}
-@media (max-width: 767px) {
+    
     .font-2 {
-        font-size: 18px;
-        line-height: 24px;
+        font-size: 26px;
+        line-height: 30px;
     }
-}
-@media (max-width: 767px) {
+    
     .font-3 {
         font-size: 26px;
         line-height: 30px;
+    }
+        .font-4 {
+        font-size: 40px;
+        line-height: 40px;
     }
 }
