@@ -273,6 +273,7 @@
          JAVASCRIPT
          ======================================== -->
     <script>
+        
 // ========================================
 // HEADER FISSO CON EFFETTO SCROLL
 // ========================================
@@ -439,6 +440,71 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .scale-in').forEach(el => {
     observer.observe(el);
 });
+
+// ========================================
+// EVIDENZIA LINK ATTIVO MENTRE SCROLLI
+// ========================================
+const sections = document.querySelectorAll('section, [id]');
+const navLinks = document.querySelectorAll('.nav-link');
+
+function highlightNavOnScroll() {
+    let current = 'home';
+    
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        
+        if (window.scrollY >= (sectionTop - 200)) {
+            current = section.getAttribute('id');
+        }
+    });
+    
+    // Se siamo in cima, evidenzia home
+    if (window.scrollY < 100) {
+        current = 'home';
+    }
+    
+    navLinks.forEach(link => {
+        link.classList.remove('selected');
+        if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('selected');
+        }
+    });
+}
+
+window.addEventListener('scroll', highlightNavOnScroll);
+
+// ========================================
+// TOUCH SWIPE PER SLIDESHOW (SOLO MOBILE)
+// ========================================
+let touchStartX = 0;
+let touchEndX = 0;
+
+function handleSwipe() {
+    if (touchEndX < touchStartX - 50) {
+        // Swipe left - prossima slide
+        stopAutoSlide();
+        nextSlide();
+        startAutoSlide();
+    }
+    
+    if (touchEndX > touchStartX + 50) {
+        // Swipe right - slide precedente
+        stopAutoSlide();
+        let prev = (currentSlide - 1 + slides.length) % slides.length;
+        goToSlide(prev);
+        startAutoSlide();
+    }
+}
+
+slideshowBg.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+}, { passive: true });
+
+slideshowBg.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+}, { passive: true });
     </script>
 </body>
 </html>
