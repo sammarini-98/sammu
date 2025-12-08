@@ -482,7 +482,9 @@ let touchCurrentX = 0;
 let isDragging = false;
 let startOffset = 0;
 
-slideshowBg.addEventListener('touchstart', (e) => {
+const heroSection = document.querySelector('.img-sfondo');
+
+heroSection.addEventListener('touchstart', (e) => {
     touchStartX = e.touches[0].clientX;
     isDragging = true;
     startOffset = -currentSlide * 100;
@@ -490,7 +492,7 @@ slideshowBg.addEventListener('touchstart', (e) => {
     slideshowBg.style.transition = 'none';
 }, { passive: true });
 
-slideshowBg.addEventListener('touchmove', (e) => {
+heroSection.addEventListener('touchmove', (e) => {
     if (!isDragging) return;
     
     touchCurrentX = e.touches[0].clientX;
@@ -501,7 +503,7 @@ slideshowBg.addEventListener('touchmove', (e) => {
     slideshowBg.style.transform = `translateX(${newOffset}%)`;
 }, { passive: true });
 
-slideshowBg.addEventListener('touchend', (e) => {
+heroSection.addEventListener('touchend', (e) => {
     if (!isDragging) return;
     
     isDragging = false;
