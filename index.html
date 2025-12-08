@@ -478,32 +478,52 @@ window.addEventListener('scroll', highlightNavOnScroll);
 // TOUCH SWIPE PER SLIDESHOW (SOLO MOBILE)
 // ========================================
 let touchStartX = 0;
-let touchEndX = 0;
-
-function handleSwipe() {
-    if (touchEndX < touchStartX - 50) {
-        // Swipe left - prossima slide
-        stopAutoSlide();
-        nextSlide();
-        startAutoSlide();
-    }
-    
-    if (touchEndX > touchStartX + 50) {
-        // Swipe right - slide precedente
-        stopAutoSlide();
-        let prev = (currentSlide - 1 + slides.length) % slides.length;
-        goToSlide(prev);
-        startAutoSlide();
-    }
-}
+let touchCurrentX = 0;
+let isDragging = false;
+let startOffset = 0;
 
 slideshowBg.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
+    touchStartX = e.touches[0].clientX;
+    isDragging = true;
+    startOffset = -currentSlide * 100;
+    stopAutoSlide();
+    slideshowBg.style.transition = 'none';
+}, { passive: true });
+
+slideshowBg.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    
+    touchCurrentX = e.touches[0].clientX;
+    const diff = touchCurrentX - touchStartX;
+    const diffPercent = (diff / window.innerWidth) * 100;
+    const newOffset = startOffset + diffPercent;
+    
+    slideshowBg.style.transform = `translateX(${newOffset}%)`;
 }, { passive: true });
 
 slideshowBg.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    handleSwipe();
+    if (!isDragging) return;
+    
+    isDragging = false;
+    const diff = touchCurrentX - touchStartX;
+    const threshold = window.innerWidth * 0.25;
+    
+    slideshowBg.style.transition = 'transform 0.4s ease-out';
+    
+    if (diff < -threshold) {
+        // Swipe left - prossima slide
+        let next = (currentSlide + 1) % slides.length;
+        goToSlide(next);
+    } else if (diff > threshold) {
+        // Swipe right - slide precedente
+        let prev = (currentSlide - 1 + slides.length) % slides.length;
+        goToSlide(prev);
+    } else {
+        // Torna alla slide corrente
+        goToSlide(currentSlide);
+    }
+    
+    startAutoSlide();
 }, { passive: true });
     </script>
 </body>
