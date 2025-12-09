@@ -692,11 +692,18 @@ window.addEventListener('resize', () => {
         location.reload();
     }, 250);
 });
-// Gestisci il clic sui caroselli
 const carouselTrack = document.querySelector('.carousel-track');
+const carousel = document.querySelector('.carousel-wrapper'); // Aggiungi questa riga
+
 carouselTrack.addEventListener('click', function(event) {
     event.preventDefault();
     // Gestisci il clic qui
+    const target = event.target;
+    if (target.classList.contains('carousel-item')) {
+        const index = Array.from(carousel.querySelectorAll('.carousel-item')).indexOf(target);
+        // Gestisci il clic sul carosello qui
+        console.log('Cliccato sul carosello:', index);
+    }
 });
     </script>
 </body>
