@@ -332,7 +332,15 @@ html, body {
     background-color: black;
     border-radius: 8px;
 }
-
+/* Immagini nei caroselli mobile */
+@media (max-width: 767px) {
+    .carousel-track-mobile .img-eventi {
+        width: 100%;
+        height: auto;
+        max-height: 200px;
+        object-fit: cover;
+    }
+}
 /* ========================================
    LINKS & BUTTONS
    ======================================== */

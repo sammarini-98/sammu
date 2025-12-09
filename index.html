@@ -124,18 +124,18 @@
         
         <!-- Progetti UNIRSM -->
         <div class="container-fluid">
-            <div class="row align-items-start color-white pb-5">
-                <div class="col-lg-4 fade-in">
+            <div class="row align-items-start color-white pb-5 progetti-carousel">
+                <div class="col-lg-4 fade-in carousel-item-progetti">
                     <img class="img-eventi" src="imgs/Guga.jpg" alt="Progetto Guga">
                     <h4 class="py-3 font-2">Guga</h4>
                     <p class="pb-4 pb-lg-0">"Guga" è un progetto realizzato in cartoncino piegato e incollato per il laboratorio di modellistica.</p>
                 </div>
-                <div class="col-lg-4 fade-in">
+                <div class="col-lg-4 fade-in carousel-item-progetti">
                     <img class="img-eventi" src="imgs/Echoes.JPG" alt="Progetto Echoes">
                     <h4 class="py-3 font-2">Echoes</h4>
                     <p class="pb-4 pb-lg-0">Questo progetto rappresenta la trasformazione geometrica di una forma data, ispirato alla figurazione delle onde sonore dell'eco.</p>
                 </div>
-                <div class="col-lg-4 fade-in">
+                <div class="col-lg-4 fade-in carousel-item-progetti">
                     <img class="img-eventi" src="imgs/Prospettiva_a_mano_libera.jpg" alt="Disegno prospettico">
                     <h4 class="py-3 font-2">Disegno a mano libera</h4>
                     <p class="pb-4 pb-lg-0">La riproduzione in prospettiva dell'interno di un appartamento per il laboratorio di disegno.</p>
@@ -194,22 +194,20 @@
         </div>
     </div>
 
-    <!-- ========================================
-         EVENTI BOTTEGA
-         ======================================== -->
+  <!-- EVENTI BOTTEGA -->
     <div class="container-fluid">
-        <div class="row align-items-start pb-5">
-            <div class="col-lg-4 fade-in">
+        <div class="row align-items-start pb-5 eventi-carousel">
+            <div class="col-lg-4 fade-in carousel-item-eventi">
                 <img class="img-eventi" src="imgs/Bottega_Christmas_concert.png" alt="Bottega Christmas Concert">
                 <h4 class="py-3 font-2">Bottega Christmas Concert</h4>
                 <p class="pb-4 pb-lg-0">Un caloroso concerto di Natale svoltosi lungo corso Garibaldi a Fossombrone, con la partecipazione delle migliori band e artisti della zona.</p>
             </div>
-            <div class="col-lg-4 fade-in">
+            <div class="col-lg-4 fade-in carousel-item-eventi">
                 <img class="img-eventi" src="imgs/Ama_e_fa_cio_che_vuoi.png" alt="Ama e fa' ciò che vuoi">
                 <h4 class="py-3 font-2">Ama e fa' ciò che vuoi</h4>
                 <p class="pb-4 pb-lg-0">Un viaggio interiore sulle note de "Il Pianista sul Maggiolone", nel suggestivo Convento dei Frati Cappuccini di Fossombrone.</p>
             </div>
-            <div class="col-lg-4 fade-in">
+            <div class="col-lg-4 fade-in carousel-item-eventi">
                 <img class="img-eventi" src="imgs/Futura_Fest.JPG" alt="Futura Fest">
                 <h4 class="py-3 font-2">Futura Fest</h4>
                 <p class="pb-4 pb-lg-0">Una giornata all'insegna di street art e musica underground, con tanti giovani e "Chicoria" come special guest.</p>
@@ -527,6 +525,173 @@ heroSection.addEventListener('touchend', (e) => {
     
     startAutoSlide();
 }, { passive: true });
+// CAROSELLI PROGETTI E EVENTI (SOLO MOBILE)
+function initMobileCarousels() {
+    if (window.innerWidth > 767) return;
+    
+    const progettiCarousel = document.querySelector('.progetti-carousel');
+    const eventiCarousel = document.querySelector('.eventi-carousel');
+    
+    if (!progettiCarousel || !eventiCarousel) {
+        console.error('Caroselli non trovati');
+        return;
+    }
+    
+    function createCarousel(carouselElement, itemClass) {
+        if (!carouselElement) return;
+        
+        const items = Array.from(carouselElement.querySelectorAll(`.${itemClass}`));
+        
+        if (items.length === 0) {
+            console.error('Nessun item trovato per', itemClass);
+            return;
+        }
+        
+        let currentIndex = 0;
+        let touchStartX = 0;
+        let touchCurrentX = 0;
+        let isDragging = false;
+        let startOffset = 0;
+        let bounceInterval;
+        let hasInteracted = false;
+        
+        // Crea wrapper e track
+        const wrapper = document.createElement('div');
+        wrapper.className = 'carousel-wrapper-mobile';
+        wrapper.style.width = '100%';
+        wrapper.style.overflow = 'hidden';
+        
+        const track = document.createElement('div');
+        track.className = 'carousel-track-mobile';
+        track.style.display = 'flex';
+        track.style.transition = 'transform 0.4s ease-out';
+        
+        // Clona gli items
+        items.forEach(item => {
+            const clone = item.cloneNode(true);
+            clone.style.minWidth = '100%';
+            clone.style.maxWidth = '100%';
+            clone.style.flexShrink = '0';
+            clone.style.marginRight = '4%';
+            clone.style.marginLeft = '0%';
+            clone.style.paddingRight = '0px';
+            clone.style.paddingLeft = '0px';
+            clone.classList.remove('fade-in', 'visible');
+            
+            // Ridimensiona immagini
+            const img = clone.querySelector('.img-eventi');
+            if (img) {
+                img.style.maxHeight = '250px';
+                img.style.height = 'auto';
+                img.style.width = '100%';
+                img.style.objectFit = 'cover';
+            }
+            
+            // Ridimensiona testi
+            const title = clone.querySelector('h4');
+            if (title) {
+                title.style.fontSize = '22px';
+                title.style.lineHeight = '26px';
+            }
+            
+            const text = clone.querySelector('p');
+            if (text) {
+                text.style.fontSize = '16px';
+                text.style.lineHeight = '22px';
+            }
+            
+            track.appendChild(clone);
+        });
+        
+        wrapper.appendChild(track);
+        carouselElement.innerHTML = '';
+        carouselElement.appendChild(wrapper);
+        
+        // Animazione di rimbalzo
+        function startBounceAnimation() {
+            if (hasInteracted) return;
+            
+            bounceInterval = setInterval(() => {
+                if (hasInteracted) {
+                    clearInterval(bounceInterval);
+                    return;
+                }
+                
+                track.style.transition = 'transform 0.5s ease-out';
+                track.style.transform = 'translateX(-8%)';
+                
+                setTimeout(() => {
+                    track.style.transform = `translateX(${-currentIndex * 100}%)`;
+                }, 500);
+            }, 3000);
+        }
+        
+        setTimeout(startBounceAnimation, 1000);
+        
+        // Touch events
+        wrapper.addEventListener('touchstart', (e) => {
+            hasInteracted = true;
+            clearInterval(bounceInterval);
+            touchStartX = e.touches[0].clientX;
+            isDragging = true;
+            startOffset = -currentIndex * 96;
+            track.style.transition = 'none';
+        }, { passive: true });
+        
+        wrapper.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            
+            touchCurrentX = e.touches[0].clientX;
+            const diff = touchCurrentX - touchStartX;
+            const diffPercent = (diff / window.innerWidth) * 100;
+            const newOffset = startOffset + diffPercent;
+            
+            track.style.transform = `translateX(${newOffset}%)`;
+        }, { passive: true });
+        
+        wrapper.addEventListener('touchend', (e) => {
+            if (!isDragging) return;
+            
+            isDragging = false;
+            const diff = touchCurrentX - touchStartX;
+            const threshold = window.innerWidth * 0.2;
+            
+            track.style.transition = 'transform 0.4s ease-out';
+            
+            if (diff < -threshold && currentIndex < items.length - 1) {
+                currentIndex++;
+            } else if (diff > threshold && currentIndex > 0) {
+                currentIndex--;
+            }
+            
+            track.style.transform = `translateX(${-currentIndex * 104}%)`;
+        }, { passive: true });
+    }
+    
+    createCarousel(progettiCarousel, 'carousel-item-progetti');
+    createCarousel(eventiCarousel, 'carousel-item-eventi');
+}
+
+// Inizializza quando il DOM è pronto
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+        if (window.innerWidth <= 767) {
+            initMobileCarousels();
+        }
+    });
+} else {
+    if (window.innerWidth <= 767) {
+        initMobileCarousels();
+    }
+}
+
+let resizeTimer;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+        location.reload();
+    }, 250);
+});
     </script>
 </body>
 </html>
