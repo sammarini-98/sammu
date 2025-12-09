@@ -684,27 +684,6 @@ if (document.readyState === 'loading') {
         initMobileCarousels();
     }
 }
-
-let resizeTimer;
-window.addEventListener('resize', () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-        location.reload();
-    }, 250);
-});
-const carouselTrack = document.querySelector('.carousel-track');
-const carousel = document.querySelector('.carousel-wrapper'); // Aggiungi questa riga
-
-carouselTrack.addEventListener('click', function(event) {
-    event.preventDefault();
-    // Gestisci il clic qui
-    const target = event.target;
-    if (target.classList.contains('carousel-item')) {
-        const index = Array.from(carousel.querySelectorAll('.carousel-item')).indexOf(target);
-        // Gestisci il clic sul carosello qui
-        console.log('Cliccato sul carosello:', index);
-    }
-});
     </script>
 </body>
 </html>
