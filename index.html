@@ -79,7 +79,7 @@
                 <div class="offset-md-1 col-md-10 text-center my-3 fade-in">
                     <p class="pt-3 font-2 color-white">Le mie origini</p>
                     <h1 class="font-4 pt-4 color-white">Da Fossombrone a San Marino<br>passando per Novafeltria</h1>
-                    <a class="link font-2 my-3 d-inline-block color-white" href="https://www.guideturisticheurbino.it/borghi/fossombrone/">Territorio</a>
+                    <a class="link font-2 my-3 d-inline-block color-white" href="https://www.guideturisticheurbino.it/borghi/fossombrone/">> Territorio</a>
                 </div>
             </div>
         </div>
@@ -101,7 +101,7 @@
                 <p class="pt-3 font-2">Web Designer</p>
                 <h1 class="font-4 pt-3 pb-4">marini<br>_samuele.html</h1>
                 <p class="py-3">Studente di design all'Università di San Marino, con un background in progettazione meccanica e una passione per il design e l'arte contemporanea.</p>
-                <a class="link-2 font-2" href="#unirsm">Scopri di più</a>
+                <a class="link-2 font-2" href="#unirsm">> Scopri di più</a>
             </div>
             <div class="order-2 offset-md-1 col-md-6 p-0 m-0 text-center scale-in">
                 <img class="img-m-s" src="imgs/marini_samuele.png" alt="Marini Samuele">                
@@ -119,7 +119,7 @@
                     <p class="pt-3 font-2 color-white">UNIRSM Design</p>
                     <h1 class="font-4 pt-4 color-white">Il mio attuale percorso</h1>
                     <p class="pt-3 color-white">Dal 2024 studio design all'Università di San Marino, dove sto sviluppando competenze nel design della comunicazione e del prodotto industriale. Un percorso che unisce la mia formazione tecnica con la passione per la creatività e il design, permettendomi di esplorare nuove forme di espressione visiva e digitale.</p>
-                    <a class="color-white link font-2 my-3 d-inline-block" href="https://design.unirsm.sm/">Sito web UNIRSM</a>
+                    <a class="color-white link font-2 my-3 d-inline-block" href="https://design.unirsm.sm/">> Sito web UNIRSM</a>
                 </div>
             </div>
         </div>
@@ -174,7 +174,7 @@
             <div class="col-12 col-md-5 px-md-3 slide-in-right">
                 <h2 class="font-4 pt-4 color-white">L'esperienza nella progettazione</h2>
                 <p class="pt-3 color-white">Tornato a Fossombrone, ho iniziato come operaio in un'azienda produttrice di mobili, per poi passare a disegnatore meccanico di macchinari enologici. Successivamente ho intrapreso un percorso di cinque anni presso un'azienda specializzata in porte per yacht, dove ho lavorato come progettista e disegnatore tecnico di porte stagne in alluminio, acciaio inox e vetro. Nel 2023 ho lavorato in uno studio di arredamento contract, occupandomi di progettazione e installazione di arredi su misura per hotel e spazi commerciali.</p>
-                <a class="link font-2 my-3 d-inline-block" href="https://www.nauticoliver.it/index.php">Sliding doors</a>
+                <a class="link font-2 my-3 d-inline-block" href="https://www.nauticoliver.it/index.php">> Sliding doors</a>
             </div>
         </div>
     </div>
@@ -188,7 +188,7 @@
                 <p class="pt-3 font-2">Volontariato</p>
                 <h1 class="font-4 pt-4">Ass. culturale<br>Bottega ODV</h1>
                 <p class="pt-3">Nel 2020, insieme a un amico, abbiamo fondato un'associazione culturale a Fossombrone che offre uno spazio di ritrovo per i giovani e organizza eventi musicali e culturali per la città. Un progetto che continua a crescere e a portare cultura nel territorio.</p>
-                <a class="link-2 font-2 my-3 d-inline-block" href="https://www.instagram.com/bottegaodv_fossombrone">Instagram</a>
+                <a class="link-2 font-2 my-3 d-inline-block" href="https://www.instagram.com/bottegaodv_fossombrone">> Instagram</a>
             </div>
             <div class="order-3 order-md-4 col-md-5 text-center p-0 scale-in">
                 <img class="img-bottega px-0 py-4" src="imgs/logo bottega quadrato bianco.png" alt="Logo Bottega">                
@@ -373,7 +373,7 @@ function updateActiveLink(clickedLink) {
 }
 
 // ========================================
-// SLIDESHOW
+// SLIDESHOW CON LOOP INFINITO
 // ========================================
 let currentSlide = 0;
 const slideshowBg = document.querySelector('.slideshow-bg');
@@ -381,17 +381,49 @@ const slides = document.querySelectorAll('.slide');
 const indicators = document.querySelectorAll('.indicator');
 const slideInterval = 5000;
 let autoSlide;
+let isTransitioning = false;
 
-function goToSlide(n) {
-    indicators[currentSlide].classList.remove('active');
+// Clona la prima slide e aggiungila alla fine per il loop infinito
+const firstSlideClone = slides[0].cloneNode(true);
+slideshowBg.appendChild(firstSlideClone);
+
+function goToSlide(n, instant = false) {
+    if (isTransitioning && !instant) return;
+    
+    isTransitioning = true;
+    indicators[currentSlide % slides.length].classList.remove('active');
     currentSlide = n;
     const offset = -currentSlide * 100;
-    slideshowBg.style.transform = `translateX(${offset}%)`;
-    indicators[currentSlide].classList.add('active');
+    
+    if (instant) {
+        slideshowBg.style.transition = 'none';
+        slideshowBg.style.transform = `translateX(${offset}%)`;
+        isTransitioning = false;
+    } else {
+        slideshowBg.style.transition = 'transform 1s ease-in-out';
+        slideshowBg.style.transform = `translateX(${offset}%)`;
+        
+        setTimeout(() => {
+            isTransitioning = false;
+            
+            // Se siamo sulla slide clonata, resettiamo istantaneamente alla prima
+            if (currentSlide === slides.length) {
+                setTimeout(() => {
+                    goToSlide(0, true);
+                    // Riattiva le transizioni
+                    setTimeout(() => {
+                        slideshowBg.style.transition = 'transform 1s ease-in-out';
+                    }, 50);
+                }, 50);
+            }
+        }, 1000);
+    }
+    
+    indicators[currentSlide % slides.length].classList.add('active');
 }
 
 function nextSlide() {
-    let next = (currentSlide + 1) % slides.length;
+    let next = currentSlide + 1;
     goToSlide(next);
 }
 
@@ -514,11 +546,15 @@ heroSection.addEventListener('touchend', (e) => {
     
     if (diff < -threshold) {
         // Swipe left - prossima slide
-        let next = (currentSlide + 1) % slides.length;
+        let next = currentSlide + 1;
         goToSlide(next);
     } else if (diff > threshold) {
         // Swipe right - slide precedente
-        let prev = (currentSlide - 1 + slides.length) % slides.length;
+        let prev = currentSlide - 1;
+        if (prev < 0) {
+            // Se siamo sulla prima slide, vai all'ultima vera (non il clone)
+            prev = slides.length - 1;
+        }
         goToSlide(prev);
     } else {
         // Torna alla slide corrente
@@ -527,7 +563,10 @@ heroSection.addEventListener('touchend', (e) => {
     
     startAutoSlide();
 }, { passive: true });
+
+// ========================================
 // CAROSELLI PROGETTI E EVENTI (SOLO MOBILE)
+// ========================================
 function initMobileCarousels() {
     if (window.innerWidth > 767) return;
     
@@ -625,10 +664,21 @@ function initMobileCarousels() {
                 setTimeout(() => {
                     track.style.transform = `translateX(${-currentIndex * 100}%)`;
                 }, 500);
-            }, 3000);
+            }, 2000); // Cambiato da 3000 a 2000
         }
         
-        setTimeout(startBounceAnimation, 1000);
+        // Observer per far partire l'animazione quando la sezione è visibile
+        const carouselObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !hasInteracted) {
+                    startBounceAnimation();
+                } else if (!entry.isIntersecting) {
+                    clearInterval(bounceInterval);
+                }
+            });
+        }, { threshold: 0.3 });
+        
+        carouselObserver.observe(carouselElement);
         
         // Touch events
         wrapper.addEventListener('touchstart', (e) => {
@@ -686,6 +736,6 @@ if (document.readyState === 'loading') {
         initMobileCarousels();
     }
 }
-    </script>
+</script>
 </body>
 </html>
