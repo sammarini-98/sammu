@@ -135,7 +135,7 @@ html, body {
     left: 0.75rem;
     width: 30px;
     height: 30px;
-    background: transparent url(../imgs/cross-mark.webp) no-repeat center center;
+    background: transparent no-repeat center center;
     background-size: cover;
     border: none;
     padding: 0;
